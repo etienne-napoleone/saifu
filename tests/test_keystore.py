@@ -14,7 +14,7 @@ KEY = '1f2e88b'
 def keystore(tmpdir):
     keystore = KeyStore(PASSWORD)
     keystore.dir = tmpdir
-    keystore.path = os.path.join(keystore.dir, 'keystore')
+    keystore.store_path = os.path.join(keystore.dir, 'keystore')
     keystore.salt_path = os.path.join(keystore.dir, 'salt')
     return keystore
 
