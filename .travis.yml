@@ -10,7 +10,7 @@ install:
 
 script:
   - flake8 .
-  - python -m pytest
+  - python -m pytest -v
 
 # before_deploy:
 #   - poetry build
