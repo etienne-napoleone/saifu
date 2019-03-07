@@ -10,7 +10,8 @@ install:
 
 script:
   - flake8 .
-  - python -m pytest -v
+  - coverage run --source saifu -m pytest -v
+  - coverage report
 
 # before_deploy:
 #   - poetry build
