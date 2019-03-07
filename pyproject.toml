@@ -11,10 +11,14 @@ authors = ["etienne-napoleone <etienne@tomochain.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.6"
+click = "^7.0"
+cryptography = "^2.6"
 
 [tool.poetry.dev-dependencies]
 pytest = "^3.0"
 flake8 = "^3.7"
+coverage = "^4.5"
+coveralls = "^1.6"
 
 [tool.poetry.scripts]
 saifu = "saifu.main:entrypoint"
