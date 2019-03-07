@@ -16,7 +16,7 @@ class KeyStore:
 
     def __init__(self, password):
         self.dir = click.get_app_dir('saifu')
-        self.path = os.path.join(self.dir, 'keystore')
+        self.store_path = os.path.join(self.dir, 'keystore')
         self.salt_path = os.path.join(self.dir, 'salt')
         self.password = password
         self.store = None
@@ -36,7 +36,7 @@ class KeyStore:
         self.fernet = Fernet(
             base64.urlsafe_b64encode(kdf.derive(str.encode(self.password)))
         )
-        with open(self.path, 'rb') as f:
+        with open(self.store_path, 'rb') as f:
             self.store = pickle.loads(self.fernet.decrypt(f.read()))
 
     def init(self):
@@ -55,7 +55,7 @@ class KeyStore:
         self.fernet = Fernet(
             base64.urlsafe_b64encode(kdf.derive(str.encode(self.password)))
         )
-        with open(self.path, 'wb+') as f:
+        with open(self.store_path, 'wb+') as f:
             store = {}
             f.write(self.fernet.encrypt(pickle.dumps(store)))
             self.store = store
@@ -63,11 +63,11 @@ class KeyStore:
     def add(self, name, pkey):
         """Add or update a key in the keystore"""
         self.store[name] = pkey
-        with open(self.path, 'wb+') as f:
+        with open(self.store_path, 'wb+') as f:
             f.write(self.fernet.encrypt(pickle.dumps(self.store)))
 
     def rm(self, name):
         """Delete a key in the keystore"""
         del(self.store[name])
-        with open(self.path, 'wb+') as f:
+        with open(self.store_path, 'wb+') as f:
             f.write(self.fernet.encrypt(pickle.dumps(self.store)))
