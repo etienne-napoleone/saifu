@@ -1,0 +1,32 @@
+language: python
+python:
+  - "3.6"
+  - "3.7-dev"
+
+before_install:
+  - pip install poetry
+install:
+  - poetry install
+
+script:
+  - flake8 .
+  - python -m pytest
+
+# before_deploy:
+#   - poetry build
+#   - pyinstaller --onefile ./create_tomochain_masternode/main.py -n create-tomochain-masternode
+# deploy:
+#   - provider: releases
+#     api_key: $GITHUB_TOKEN
+#     file_glob: true
+#     file: dist/*
+#     skip_cleanup: true
+#     on:
+#       tags: true
+#       python: 3.6
+#   - provider: script
+#     script: poetry publish -u "$PYPI_USERNAME" -p "$PYPI_PASSWORD" -n
+#     skip_cleanup: true
+#     on:
+#       tags: true
+#       python: 3.6
