@@ -11,7 +11,7 @@ from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 
 class KeyStore:
     """Class representing a keystore
-    Store a dict of keys
+    Store a dict of encrypted keys
     """
 
     def __init__(self, password):
