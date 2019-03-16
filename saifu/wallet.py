@@ -1,5 +1,5 @@
-from web3 import Web3, HTTPProvider
 from eth_account import Account
+from web3 import Web3, HTTPProvider
 
 
 class Wallet:
