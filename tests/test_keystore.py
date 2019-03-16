@@ -4,7 +4,7 @@ import pytest
 
 from cryptography.fernet import Fernet
 
-from saifu.keystore import KeyStore
+from saifu.keystore import Keystore
 
 PASSWORD = 'test1234'
 KEY = '1f2e88b'
@@ -12,7 +12,7 @@ KEY = '1f2e88b'
 
 @pytest.fixture
 def keystore(tmpdir):
-    keystore = KeyStore(PASSWORD)
+    keystore = Keystore(PASSWORD)
     keystore.dir = tmpdir
     keystore.store_path = os.path.join(keystore.dir, 'keystore')
     keystore.salt_path = os.path.join(keystore.dir, 'salt')
@@ -20,7 +20,7 @@ def keystore(tmpdir):
 
 
 def test_instance(keystore):
-    assert isinstance(keystore, KeyStore)
+    assert isinstance(keystore, Keystore)
 
 
 def test_init(keystore):

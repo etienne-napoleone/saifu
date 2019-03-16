@@ -9,7 +9,7 @@ from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 
 
-class KeyStore:
+class Keystore:
     """Class representing a keystore
     Store a dict of encrypted keys
     """
