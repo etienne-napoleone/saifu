@@ -13,6 +13,7 @@ authors = ["etienne-napoleone <etienne@tomochain.com>"]
 python = "^3.6"
 click = "^7.0"
 cryptography = "^2.6"
+web3 = "^4.8"
 
 [tool.poetry.dev-dependencies]
 pytest = "^3.0"
