@@ -175,9 +175,6 @@ optional = false
 python-versions = ">=3.5, <4"
 version = "0.2.0"
 
-[package.dependencies]
-pycryptodome = ">=3.6.6,<4"
-
 [[package]]
 category = "main"
 description = "A library for handling the encrypted keyfiles used to store ethereum private keys."
@@ -428,6 +425,14 @@ version = "1.12.0"
 
 [[package]]
 category = "main"
+description = "TinyDB is a tiny, document oriented database optimized for your happiness :)"
+name = "tinydb"
+optional = false
+python-versions = "*"
+version = "3.12.2"
+
+[[package]]
+category = "main"
 description = "List processing tools and functional utilities"
 name = "toolz"
 optional = false
@@ -472,7 +477,7 @@ python-versions = ">=3.4"
 version = "6.0"
 
 [metadata]
-content-hash = "5d494f7b5386cd7c8cd8af4a23e84af0f59b308158abe2788c81f814b110fe9e"
+content-hash = "b3076ee8a14261855e44abdade59b9941cf02dbfc0fcf67bc3ffc069718d5ffd"
 python-versions = "^3.6"
 
 [metadata.hashes]
@@ -518,6 +523,7 @@ pywin32 = ["22e218832a54ed206452c8f3ca9eff07ef327f8e597569a4c2828be5eaa09a77", "
 requests = ["502a824f31acdacb3a35b6690b5fbf0bc41d63a24a45c4004352b0242707598e", "7bf2a778576d825600030a110f3c0e3e8edc51dfaafe1c146e39a2027784957b"]
 rlp = ["0505fd53278cb4a3ea6baf1b658357ac209bdcdd1b316ac90050c40f669ceacc", "ebe80a03c50e3d6aac47f44ddd45048bb99e411203cd764f5da1330e6d83821c"]
 six = ["3350809f0555b11f552448330d0b52d5f24c91a322ea4a15ef22629740f3761c", "d16a0141ec1a18405cd4ce8b4613101da75da0e9a7aec5bdd4fa804d0e0eba73"]
+tinydb = ["24b3d4a9611e9953fd57caf063ede6d20abfa0886289fa251f5933082c605dca", "54f6b52fc9bc8378ea29b60e8d93c58f0f4b580a0a3b345810fbc2375baa7655"]
 toolz = ["929f0a7ea7f61c178bd951bdae93920515d3fbdbafc8e6caf82d752b9b3b31c9"]
 urllib3 = ["61bf29cada3fc2fbefad4fdf059ea4bd1b4a86d2b6d15e1c7c0b582b9752fe39", "de9529817c93f27c8ccbfead6985011db27bd0ddfcdb2d86f3f663385c6a9c22"]
 web3 = ["6772f7ca234c16febaa4d53f403062cb702509936b0deddab3968ce0bb8f50cb", "6b8086ef2634f89e780c2fcba9e1a7e3c2cdac0edfaa8e5f15991d0afdcc5897"]
