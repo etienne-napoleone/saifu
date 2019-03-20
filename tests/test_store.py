@@ -3,8 +3,7 @@ import pytest
 
 from saifu.store import Store
 
-PASSWORD = 'test1234'
-KEY = '1f2e88b'
+TEST_VALUE = {'test': 'value'}
 
 
 @pytest.fixture
@@ -18,10 +17,17 @@ def test_instance(store):
 
 
 def test_init(store):
-    os.path.isfile(store.path)
+    assert os.path.isfile(store.path)
+
+
+def test_init_existing(store):
+    os.remove(store.path)
+    os.rmdir(store.dir)
+    store_2 = Store(dir=store.dir)
+    assert os.path.isfile(store_2.path)
 
 
 def test_insert(store):
-    store.insert({'test': 'value'})
+    store.db.insert(TEST_VALUE)
     assert len(store.db.all()) == 1
-    assert store.db.all()[0]['test'] == 'value'
+    assert store.db.all()[0]['test'] == TEST_VALUE['test']
