@@ -41,3 +41,7 @@ class AccountManager():
             'salt': payload['salt'],
         }})
         self._write()
+
+    def rm(self, name):
+        del(self.accounts['accounts'][name])
+        self._write()
