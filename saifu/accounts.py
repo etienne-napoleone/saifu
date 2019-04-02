@@ -40,7 +40,18 @@ class AccountManager():
             'pkey_cipher': payload['cipher'],
             'salt': payload['salt'],
         }})
+        if not self.accounts['default']:
+            self.accounts['default'] = name
         self._write()
+
+    def list(self):
+        accounts = []
+        for name, _ in self.accounts['accounts'].items():
+            accounts.append({
+                'name': name,
+                'default': True if self.accounts['default'] == name else False
+            })
+        return accounts
 
     def get(self, name):
         return {'pkey': crypto.decrypt(
