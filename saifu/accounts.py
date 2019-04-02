@@ -42,6 +42,13 @@ class AccountManager():
         }})
         self._write()
 
+    def get(self, name):
+        return {'pkey': crypto.decrypt(
+            self.password,
+            self.accounts['accounts'][name]['salt'],
+            self.accounts['accounts'][name]['pkey_cipher']
+        )}
+
     def rm(self, name):
         del(self.accounts['accounts'][name])
         self._write()

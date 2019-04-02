@@ -24,3 +24,18 @@ def encrypt(password, plain):
         'salt': salt.decode('utf-8'),
         'cipher': fernet.encrypt(plain.encode('utf-8')).decode('utf-8'),
     }
+
+
+def decrypt(password, salt, cipher):
+    """Decrypt data with given salt and password"""
+    kdf = PBKDF2HMAC(
+        algorithm=hashes.SHA256(),
+        length=32,
+        salt=salt.encode('utf-8'),
+        iterations=100000,
+        backend=default_backend()
+    )
+    fernet = Fernet(
+        base64.urlsafe_b64encode(kdf.derive(str.encode(password)))
+    )
+    return fernet.decrypt(cipher.encode('utf-8')).decode('utf-8')
