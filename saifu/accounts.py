@@ -6,7 +6,7 @@ import click
 
 
 class AccountManager():
-    """docstring for AccountManager."""
+    """Manage accounts and storing them"""
 
     FILE_NAME = 'accounts.json'
     FILE_STRUCTURE = {'default': None, 'accounts': {}}
@@ -22,10 +22,12 @@ class AccountManager():
             self._write()
 
     def _load(self):
+        """Load accounts from file"""
         with open(self.path) as f:
             self.accounts = json.load(f)
 
     def _write(self):
+        """Write accounts to file"""
         try:
             with open(self.path, 'w') as f:
                     json.dump(self.accounts, f)
@@ -35,6 +37,7 @@ class AccountManager():
                     json.dump(self.accounts, f)
 
     def new(self, name, pkey):
+        """Add a new account"""
         payload = crypto.encrypt(self.password, pkey)
         self.accounts['accounts'].update({name: {
             'pkey_cipher': payload['cipher'],
@@ -45,6 +48,7 @@ class AccountManager():
         self._write()
 
     def list(self):
+        """List accounts"""
         accounts = []
         for name, _ in self.accounts['accounts'].items():
             accounts.append({
@@ -54,6 +58,7 @@ class AccountManager():
         return accounts
 
     def get(self, name):
+        """Get an account details"""
         return {'pkey': crypto.decrypt(
             self.password,
             self.accounts['accounts'][name]['salt'],
@@ -61,5 +66,6 @@ class AccountManager():
         )}
 
     def rm(self, name):
+        """Remove an account"""
         del(self.accounts['accounts'][name])
         self._write()
