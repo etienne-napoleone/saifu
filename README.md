@@ -7,8 +7,8 @@ Mainly focused on TomoChain.
 ## Roadmap
 
 **v1.0** - First release
-- [ ] Encrypted storage (AES256)
-- [ ] Support multiple accounts
+- [x] Encrypted storage
+- [x] Support multiple accounts
 - [ ] Support multiple backends (chains)
 - [ ] Display balance
 - [ ] Send transactions
