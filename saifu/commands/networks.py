@@ -13,3 +13,14 @@ def networks():
 def list():
     n = NetworksManager()
     views.networks.list(n.list())
+
+
+@networks.command()
+@click.option('--name', prompt=f'{views.QUESTION_BULLET} Network name')
+@click.option('--rpc_url', prompt=f'{views.QUESTION_BULLET} Network RPC url')
+@click.option('--chain_id', prompt=f'{views.QUESTION_BULLET} Network chain id')
+@click.option('--ticker', prompt=f'{views.QUESTION_BULLET} Network ticker')
+def add(name, rpc_url, chain_id, ticker):
+    n = NetworksManager()
+    n.new(name, rpc_url, chain_id, ticker)
+    views.networks.add(name, rpc_url, chain_id, ticker)
