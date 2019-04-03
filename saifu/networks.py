@@ -73,5 +73,5 @@ class NetworksManager():
 
     def rm(self, name):
         """Remove a network"""
-        del(self.accounts['accounts'][name])
+        del(self.networks['networks'][name])
         self._write()
