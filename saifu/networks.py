@@ -9,7 +9,7 @@ class NetworksManager():
 
     FILE_NAME = 'networks.json'
     FILE_STRUCTURE = {
-        'default': 'TomoChain',
+        'current': 'TomoChain',
         'networks': {
             'TomoChain': {
                 'rpc_url': 'https://rpc.tomochain.com',
@@ -63,7 +63,7 @@ class NetworksManager():
         for name, _ in self.networks['networks'].items():
             networks.append({
                 'name': name,
-                'default': True if self.networks['default'] == name else False
+                'current': True if self.networks['current'] == name else False
             })
         return networks
 

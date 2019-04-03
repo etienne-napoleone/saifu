@@ -9,7 +9,7 @@ class AccountsManager():
     """Manage accounts and storing them"""
 
     FILE_NAME = 'accounts.json'
-    FILE_STRUCTURE = {'default': None, 'accounts': {}}
+    FILE_STRUCTURE = {'current': None, 'accounts': {}}
 
     def __init__(self, password, app_dir=click.get_app_dir('saifu')):
         self.password = password
@@ -43,8 +43,8 @@ class AccountsManager():
             'pkey_cipher': payload['cipher'],
             'salt': payload['salt'],
         }})
-        if not self.accounts['default']:
-            self.accounts['default'] = name
+        if not self.accounts['current']:
+            self.accounts['current'] = name
         self._write()
 
     def list(self):
@@ -53,7 +53,7 @@ class AccountsManager():
         for name, _ in self.accounts['accounts'].items():
             accounts.append({
                 'name': name,
-                'default': True if self.accounts['default'] == name else False
+                'current': True if self.accounts['current'] == name else False
             })
         return accounts
 

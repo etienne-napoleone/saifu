@@ -2,9 +2,9 @@ import click
 
 
 def list(accounts):
-    DEFAULT = '*'
+    CURRENT = '*'
     for account in accounts:
         click.echo('{} {}'.format(
-            DEFAULT if account['default'] else ' ' * len(DEFAULT),
+            CURRENT if account['current'] else ' ' * len(CURRENT),
             account['name'],
         ))
