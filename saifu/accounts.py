@@ -30,11 +30,11 @@ class AccountsManager():
         """Write accounts to file"""
         try:
             with open(self.path, 'w') as f:
-                    json.dump(self.accounts, f)
+                json.dump(self.accounts, f)
         except FileNotFoundError:
             os.makedirs(self.app_dir)
             with open(self.path, 'w') as f:
-                    json.dump(self.accounts, f)
+                json.dump(self.accounts, f)
 
     def new(self, name, pkey):
         """Add a new account"""

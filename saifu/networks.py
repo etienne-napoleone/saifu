@@ -42,11 +42,11 @@ class NetworksManager():
         """Write networks to file"""
         try:
             with open(self.path, 'w') as f:
-                    json.dump(self.networks, f)
+                json.dump(self.networks, f)
         except FileNotFoundError:
             os.makedirs(self.app_dir)
             with open(self.path, 'w') as f:
-                    json.dump(self.networks, f)
+                json.dump(self.networks, f)
 
     def new(self, name, rpc_url, chain_id, ticker):
         """Add a new network"""
