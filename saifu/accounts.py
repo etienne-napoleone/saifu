@@ -5,7 +5,7 @@ from saifu import crypto
 import click
 
 
-class AccountManager():
+class AccountsManager():
     """Manage accounts and storing them"""
 
     FILE_NAME = 'accounts.json'
