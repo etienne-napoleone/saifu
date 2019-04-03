@@ -9,7 +9,7 @@ Mainly focused on TomoChain.
 **v1.0** - First release
 - [x] Encrypted storage
 - [x] Support multiple accounts
-- [ ] Support multiple backends (chains)
+- [x] Support multiple networks (chains)
 - [ ] Display balance
 - [ ] Send transactions
 
