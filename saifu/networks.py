@@ -27,6 +27,7 @@ class NetworksManager():
     def __init__(self, app_dir=click.get_app_dir('saifu')):
         self.app_dir = app_dir
         self.path = os.path.join(self.app_dir, self.FILE_NAME)
+        # TODO refactor self.networks to self.store
         self.networks = self.FILE_STRUCTURE
         try:
             self._load()
@@ -78,10 +79,11 @@ class NetworksManager():
 
     def select(self, name):
         """Set currently selected network"""
-        if name not in self.networks.keys():
+        if name not in self.networks['networks'].keys():
             raise KeyError('Not network found for this name')
         else:
             self.networks['current'] = name
+            self._write()
 
     def selected(self):
         """Get currently selected network"""
