@@ -19,6 +19,7 @@ pytest = "^3.0"
 flake8 = "^3.7"
 coverage = "^4.5"
 coveralls = "^1.6"
+bandit = "^1.5"
 
 [tool.poetry.scripts]
 saifu = "saifu.main:entrypoint"

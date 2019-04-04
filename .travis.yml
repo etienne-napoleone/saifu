@@ -10,6 +10,7 @@ install:
 
 script:
   - flake8 .
+  - bandit -r saifu
   - coverage run --source saifu -m pytest -v
   - coverage report
 
