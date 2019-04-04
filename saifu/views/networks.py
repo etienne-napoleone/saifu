@@ -18,3 +18,11 @@ def add(name, rpc_url, chain_id, ticker):
     click.echo(el.format('RPC url', rpc_url))
     click.echo(el.format('Chain id', chain_id))
     click.echo(el.format('Ticker', ticker))
+
+
+def rm(name):
+    click.echo('Removed network {}'.format(click.style(name, fg='green')))
+
+
+def select(name):
+    click.echo('Selected network {}'.format(click.style(name, fg='green')))

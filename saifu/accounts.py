@@ -15,6 +15,7 @@ class AccountsManager():
         self.password = password
         self.app_dir = app_dir
         self.path = os.path.join(self.app_dir, self.FILE_NAME)
+        # TODO refactor self.accounts to self.store
         self.accounts = self.FILE_STRUCTURE
         try:
             self._load()

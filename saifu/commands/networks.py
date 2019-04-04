@@ -24,3 +24,19 @@ def add(name, rpc_url, chain_id, ticker):
     n = NetworksManager()
     n.new(name, rpc_url, chain_id, ticker)
     views.networks.add(name, rpc_url, chain_id, ticker)
+
+
+@networks.command()
+@click.option('--name', prompt=f'{views.QUESTION_BULLET} Network name')
+def rm(name):
+    n = NetworksManager()
+    n.rm(name)
+    views.networks.rm(name)
+
+
+@networks.command()
+@click.option('--name', prompt=f'{views.QUESTION_BULLET} Network name')
+def select(name):
+    n = NetworksManager()
+    n.select(name)
+    views.networks.select(name)
