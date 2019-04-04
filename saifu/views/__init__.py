@@ -1,8 +1,8 @@
 import click
 
-from saifu.views import networks
+from saifu.views import network
 
-__all__ = ['networks']
+__all__ = ['network']
 
 QUESTION_BULLET = f'{click.style("?", fg="cyan")}'
 SELECTED_INDICATOR = '*'

@@ -1,7 +1,7 @@
 import click
 
 from saifu import __version__
-from saifu.commands.networks import networks
+from saifu.commands.network import network
 
 
 @click.group(help=('Saifu (財布) is a cli wallet for TomoChain'))
@@ -11,4 +11,4 @@ def entrypoint():
     pass
 
 
-entrypoint.add_command(networks)
+entrypoint.add_command(network)

@@ -5,17 +5,17 @@ from saifu import views
 
 
 @click.group()
-def networks():
+def network():
     pass
 
 
-@networks.command()
+@network.command()
 def list():
     n = NetworksManager()
-    views.networks.list(n.list())
+    views.network.list(n.list())
 
 
-@networks.command()
+@network.command()
 @click.option('--name', prompt=f'{views.QUESTION_BULLET} Network name')
 @click.option('--rpc_url', prompt=f'{views.QUESTION_BULLET} Network RPC url')
 @click.option('--chain_id', prompt=f'{views.QUESTION_BULLET} Network chain id')
@@ -23,20 +23,20 @@ def list():
 def add(name, rpc_url, chain_id, ticker):
     n = NetworksManager()
     n.new(name, rpc_url, chain_id, ticker)
-    views.networks.add(name, rpc_url, chain_id, ticker)
+    views.network.add(name, rpc_url, chain_id, ticker)
 
 
-@networks.command()
+@network.command()
 @click.option('--name', prompt=f'{views.QUESTION_BULLET} Network name')
 def rm(name):
     n = NetworksManager()
     n.rm(name)
-    views.networks.rm(name)
+    views.network.rm(name)
 
 
-@networks.command()
+@network.command()
 @click.option('--name', prompt=f'{views.QUESTION_BULLET} Network name')
 def select(name):
     n = NetworksManager()
     n.select(name)
-    views.networks.select(name)
+    views.network.select(name)
