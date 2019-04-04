@@ -63,7 +63,7 @@ class NetworksManager():
         for name, _ in self.networks['networks'].items():
             networks.append({
                 'name': name,
-                'current': True if self.networks['current'] == name else False
+                'current': True if self.get_current() == name else False
             })
         return networks
 
@@ -75,3 +75,14 @@ class NetworksManager():
         """Remove a network"""
         del(self.networks['networks'][name])
         self._write()
+
+    def set_current(self, name):
+        """Set currently selected network"""
+        if name not in self.networks.keys():
+            raise KeyError('Not network found for this name')
+        else:
+            self.networks['current'] = name
+
+    def get_current(self):
+        """Get currently selected network"""
+        return self.networks['current']
