@@ -9,14 +9,14 @@ class NetworksManager():
 
     FILE_NAME = 'networks.json'
     FILE_STRUCTURE = {
-        'current': 'TomoChain',
+        'current': 'mainnet',
         'networks': {
-            'TomoChain': {
+            'mainnet': {
                 'rpc_url': 'https://rpc.tomochain.com',
                 'chain_id': '88',
                 'ticker': 'TOMO',
             },
-            'TomoChain testnet': {
+            'testnet': {
                 'rpc_url': 'https://testnet.tomochain.com',
                 'chain_id': '89',
                 'ticker': 'TOMO',
