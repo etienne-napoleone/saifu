@@ -13,7 +13,7 @@ def network():
 
 
 @network.command()
-def list():
+def ls():
     """List all available networks"""
     networks = n.list()
     if networks:
