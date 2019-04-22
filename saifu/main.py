@@ -1,7 +1,7 @@
 import click
 
 from saifu import __version__
-from saifu.commands.network import network
+from saifu import commands
 
 
 @click.group()
@@ -11,4 +11,5 @@ def entrypoint():
     pass
 
 
-entrypoint.add_command(network)
+entrypoint.add_command(commands.account)
+entrypoint.add_command(commands.network)
