@@ -27,8 +27,7 @@ class NetworksManager():
     def __init__(self, app_dir=click.get_app_dir('saifu')):
         self.app_dir = app_dir
         self.path = os.path.join(self.app_dir, self.FILE_NAME)
-        # TODO refactor self.networks to self.store
-        self.networks = self.FILE_STRUCTURE
+        self.store = self.FILE_STRUCTURE
         try:
             self._load()
         except FileNotFoundError:
@@ -37,21 +36,21 @@ class NetworksManager():
     def _load(self):
         """Load networks from file"""
         with open(self.path) as f:
-            self.networks = json.load(f)
+            self.store = json.load(f)
 
     def _write(self):
         """Write networks to file"""
         try:
             with open(self.path, 'w') as f:
-                json.dump(self.networks, f)
+                json.dump(self.store, f)
         except FileNotFoundError:
             os.makedirs(self.app_dir)
             with open(self.path, 'w') as f:
-                json.dump(self.networks, f)
+                json.dump(self.store, f)
 
     def new(self, name, rpc_url, chain_id, ticker):
         """Add a new network"""
-        self.networks['networks'].update({name: {
+        self.store['networks'].update({name: {
             'rpc_url': rpc_url,
             'chain_id': chain_id,
             'ticker': ticker,
@@ -61,7 +60,7 @@ class NetworksManager():
     def list(self):
         """List networks"""
         networks = []
-        for name, _ in self.networks['networks'].items():
+        for name, _ in self.store['networks'].items():
             networks.append({
                 'name': name,
                 'current': True if self.selected() == name else False
@@ -70,21 +69,21 @@ class NetworksManager():
 
     def get(self, name):
         """Get an network details"""
-        return self.networks['networks'][name]
+        return self.store['networks'][name]
 
     def rm(self, name):
         """Remove a network"""
-        del(self.networks['networks'][name])
+        del(self.store['networks'][name])
         self._write()
 
     def select(self, name):
         """Set currently selected network"""
-        if name not in self.networks['networks'].keys():
+        if name not in self.store['networks'].keys():
             raise KeyError('Not network found for this name')
         else:
-            self.networks['current'] = name
+            self.store['current'] = name
             self._write()
 
     def selected(self):
         """Get currently selected network"""
-        return self.networks['current']
+        return self.store['current']
