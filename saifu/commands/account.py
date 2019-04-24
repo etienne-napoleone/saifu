@@ -3,7 +3,7 @@ import click
 from saifu.accounts import AccountsManager
 from saifu import views
 
-n = AccountsManager()
+a = AccountsManager()
 
 
 @click.group()
@@ -15,7 +15,7 @@ def account():
 @account.command()
 def ls():
     """List all available accounts"""
-    accounts = n.list()
+    accounts = a.list()
     if accounts:
         views.account.list(accounts)
     else:
@@ -28,25 +28,37 @@ def ls():
 @click.option('--password', prompt=f'{views.QUESTION_BULLET} Password', hide_input=True)  # noqa: E501
 def add(name, pkey, password):
     """Add an account"""
-    n.new(name, pkey, password)
+    a.new(name, pkey, password)
+    views.account.add(name)
 
 
 @account.command()
 @click.argument('name')
 def rm(name):
     """Remove an account"""
-    pass
+    try:
+        a.rm(name)
+        views.account.rm(name)
+    except KeyError:
+        views.message.error(f'No account found with name {name}')
 
 
 @account.command()
 @click.argument('name')
 def select(name):
     """Select which account to use"""
-    pass
+    try:
+        a.select(name)
+        views.account.select(name)
+    except KeyError:
+        views.message.error(f'No account found with name {name}')
 
 
-@account.command()
-@click.argument('name')
-def inspect(name):
-    """Display the details of an account"""
-    pass
+# @account.command()
+# @click.argument('name')
+# def inspect(name):
+#     """Display the details of an account"""
+#     try:
+#         views.network.inspect(name, **a.get(name))
+#     except KeyError:
+#         views.message.error(f'No account found with name {name}')
