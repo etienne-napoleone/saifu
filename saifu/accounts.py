@@ -68,3 +68,15 @@ class AccountsManager():
         """Remove an account"""
         del(self.store['accounts'][name])
         self._write()
+
+    def select(self, name):
+        """Set currently selected account"""
+        if name not in self.store['accounts'].keys():
+            raise KeyError('Not network found with this name')
+        else:
+            self.store['current'] = name
+            self._write()
+
+    def selected(self):
+        """Get currently selected account"""
+        return self.store['current']
