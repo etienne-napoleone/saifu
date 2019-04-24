@@ -79,7 +79,7 @@ class NetworksManager():
     def select(self, name):
         """Set currently selected network"""
         if name not in self.store['networks'].keys():
-            raise KeyError('Not network found for this name')
+            raise KeyError('No network found with this name')
         else:
             self.store['current'] = name
             self._write()
