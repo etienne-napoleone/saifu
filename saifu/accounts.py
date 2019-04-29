@@ -52,21 +52,24 @@ class AccountsManager():
     def list(self):
         """List accounts"""
         accounts = []
-        for name, _ in self.store['accounts'].items():
+        for name, values in self.store['accounts'].items():
             accounts.append({
                 'name': name,
-                'current': True if self.store['current'] == name else False
+                'current': True if self.store['current'] == name else False,
+                'address': values['address'],
             })
         return accounts
 
     def get(self, name, password):
         """Get an account details"""
-        return {'pkey': crypto.decrypt(
-            password,
-            self.store['accounts'][name]['salt'],
-            self.store['accounts'][name]['pkey_cipher'],
-            self.store['accounts'][name]['address']
-        )}
+        return {
+            'pkey': crypto.decrypt(
+                password,
+                self.store['accounts'][name]['salt'],
+                self.store['accounts'][name]['pkey_cipher'],
+            ),
+            'address': self.store['accounts'][name]['address'],
+        }
 
     def rm(self, name):
         """Remove an account"""

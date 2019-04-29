@@ -5,10 +5,11 @@ from saifu import views
 
 def list(accounts):
     for account in accounts:
-        click.echo('{} {}'.format(
+        click.echo('{} {} {}'.format(
             views.SELECTED_INDICATOR if account['current']
             else ' ' * len(views.SELECTED_INDICATOR),
             account['name'],
+            click.style(account['address'][:7], fg='green'),
         ))
 
 
@@ -23,8 +24,8 @@ def rm(name):
 def select(name):
     click.echo('Selected account {}'.format(click.style(name, fg='green')))
 
-# def inspect(name, rpc_url, chain_id, ticker):
-#     el = '  {} {}'.format('{}:', click.style('{}', fg='yellow'))
-#     click.echo(el.format('RPC url', rpc_url))
-#     click.echo(el.format('Chain id', chain_id))
-#     click.echo(el.format('Ticker', ticker))
+
+def inspect(name, export, pkey, address):
+    el = '  {} {}'.format('{}:', click.style('{}', fg='yellow'))
+    click.echo(el.format('Address', address))
+    click.echo(el.format('Private key', pkey if export else '******'))

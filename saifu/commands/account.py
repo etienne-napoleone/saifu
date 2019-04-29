@@ -2,6 +2,7 @@ import click
 
 from saifu.accounts import AccountsManager
 from saifu import views
+import cryptography
 
 a = AccountsManager()
 
@@ -28,8 +29,11 @@ def ls():
 @click.option('--password', prompt=f'{views.QUESTION_BULLET} Password', hide_input=True)  # noqa: E501
 def add(name, pkey, password):
     """Add an account"""
-    a.new(name, pkey, password)
-    views.account.add(name)
+    try:
+        a.new(name, pkey, password)
+        views.account.add(name)
+    except ValueError:
+        views.message.error(f'The private key is not valid')
 
 
 @account.command()
@@ -54,11 +58,20 @@ def select(name):
         views.message.error(f'No account found with name {name}')
 
 
-# @account.command()
-# @click.argument('name')
-# def inspect(name):
-#     """Display the details of an account"""
-#     try:
-#         views.network.inspect(name, **a.get(name))
-#     except KeyError:
-#         views.message.error(f'No account found with name {name}')
+@account.command()
+@click.argument('name')
+@click.option('--password', prompt=f'{views.QUESTION_BULLET} Password', hide_input=True)  # noqa: E501
+@click.option('--export', is_flag=True)
+def inspect(name, password, export):
+    """Display the details of an account"""
+    if export:
+        export = click.confirm(
+            f'{views.QUESTION_BULLET} Are you sure you want to '
+            'expose the private key?'
+        )
+    try:
+        views.account.inspect(name, export, **a.get(name, password))
+    except KeyError:
+        views.message.error(f'No account found with name {name}')
+    except cryptography.fernet.InvalidToken:
+        views.message.error(f'Invalid password')
