@@ -5,10 +5,11 @@ from saifu import views
 
 def list(accounts):
     for account in accounts:
-        click.echo('{} {}'.format(
+        click.echo('{} {} {}'.format(
             views.SELECTED_INDICATOR if account['current']
             else ' ' * len(views.SELECTED_INDICATOR),
             account['name'],
+            click.style(account['address'][:7], fg='green'),
         ))
 
 

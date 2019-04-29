@@ -52,10 +52,11 @@ class AccountsManager():
     def list(self):
         """List accounts"""
         accounts = []
-        for name, _ in self.store['accounts'].items():
+        for name, values in self.store['accounts'].items():
             accounts.append({
                 'name': name,
-                'current': True if self.store['current'] == name else False
+                'current': True if self.store['current'] == name else False,
+                'address': values['address'],
             })
         return accounts
 
