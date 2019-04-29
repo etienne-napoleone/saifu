@@ -28,8 +28,11 @@ def ls():
 @click.option('--password', prompt=f'{views.QUESTION_BULLET} Password', hide_input=True)  # noqa: E501
 def add(name, pkey, password):
     """Add an account"""
-    a.new(name, pkey, password)
-    views.account.add(name)
+    try:
+        a.new(name, pkey, password)
+        views.account.add(name)
+    except ValueError:
+        views.message.error(f'The private key is not valid')
 
 
 @account.command()
