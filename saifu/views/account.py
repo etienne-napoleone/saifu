@@ -22,7 +22,9 @@ def rm(name):
 
 
 def select(name):
-    click.echo('Selected account {}'.format(click.style(name, fg='green')))
+    click.echo(
+        'Account {} is now active'.format(click.style(name, fg='green'))
+    )
 
 
 def inspect(name, export, pkey, address):

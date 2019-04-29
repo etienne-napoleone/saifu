@@ -7,4 +7,4 @@ from saifu.views import message
 __all__ = ['account', 'network', 'message']
 
 QUESTION_BULLET = f'{click.style("?", fg="cyan")}'
-SELECTED_INDICATOR = '*'
+SELECTED_INDICATOR = '•'
