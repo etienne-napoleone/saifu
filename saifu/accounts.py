@@ -1,6 +1,7 @@
 import os
 import json
 
+from eth_account import Account
 from saifu import crypto
 import click
 
@@ -38,9 +39,11 @@ class AccountsManager():
     def new(self, name, pkey, password):
         """Add a new account"""
         payload = crypto.encrypt(password, pkey)
+        account = Account.privateKeyToAccount(pkey)
         self.store['accounts'].update({name: {
-            'pkey_cipher': payload['cipher'],
             'salt': payload['salt'],
+            'pkey_cipher': payload['cipher'],
+            'address': account.address,
         }})
         if not self.store['current']:
             self.store['current'] = name
@@ -61,7 +64,8 @@ class AccountsManager():
         return {'pkey': crypto.decrypt(
             password,
             self.store['accounts'][name]['salt'],
-            self.store['accounts'][name]['pkey_cipher']
+            self.store['accounts'][name]['pkey_cipher'],
+            self.store['accounts'][name]['address']
         )}
 
     def rm(self, name):
