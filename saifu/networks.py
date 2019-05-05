@@ -48,7 +48,7 @@ class NetworksManager():
             with open(self.path, 'w') as f:
                 json.dump(self.store, f)
 
-    def new(self, name, rpc_url, chain_id, ticker):
+    def add(self, name, rpc_url, chain_id, ticker):
         """Add a new network"""
         self.store['networks'].update({name: {
             'rpc_url': rpc_url,
@@ -67,7 +67,7 @@ class NetworksManager():
             })
         return networks
 
-    def get(self, name):
+    def inspect(self, name):
         """Get an network details"""
         return self.store['networks'][name]
 

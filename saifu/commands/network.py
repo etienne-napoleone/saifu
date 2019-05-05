@@ -29,7 +29,7 @@ def ls():
 @click.option('--ticker', prompt=f'{views.QUESTION_BULLET} Network ticker')
 def add(name, rpc_url, chain_id, ticker):
     """Add a network"""
-    n.new(name, rpc_url, chain_id, ticker)
+    n.add(name, rpc_url, chain_id, ticker)
     views.network.add(name, rpc_url, chain_id, ticker)
 
 
@@ -60,6 +60,6 @@ def select(name):
 def inspect(name):
     """Display the details of a network"""
     try:
-        views.network.inspect(name, **n.get(name))
+        views.network.inspect(name, **n.inspect(name))
     except KeyError:
         views.message.error(f'No network found with name {name}')

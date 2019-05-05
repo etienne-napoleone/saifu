@@ -30,7 +30,7 @@ def ls():
 def add(name, pkey, password):
     """Add an account"""
     try:
-        a.new(name, pkey, password)
+        a.add(name, pkey, password)
         views.account.add(name)
     except ValueError:
         views.message.error(f'The private key is not valid')
@@ -70,7 +70,7 @@ def inspect(name, password, export):
             'expose the private key?'
         )
     try:
-        views.account.inspect(name, export, **a.get(name, password))
+        views.account.inspect(name, export, **a.inspect(name, password))
     except KeyError:
         views.message.error(f'No account found with name {name}')
     except cryptography.fernet.InvalidToken:
