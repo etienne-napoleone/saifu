@@ -71,6 +71,15 @@ class AccountsManager():
             'address': self.store['accounts'][name]['address'],
         }
 
+    def get(self, name, password):
+        """Get an account object"""
+        pkey = crypto.decrypt(
+            password,
+            self.store['accounts'][name]['salt'],
+            self.store['accounts'][name]['pkey_cipher'],
+        )
+        return Account.privateKeyToAccount(pkey)
+
     def rm(self, name):
         """Remove an account"""
         del(self.store['accounts'][name])
