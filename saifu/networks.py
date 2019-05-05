@@ -1,6 +1,7 @@
 import os
 import json
 
+from web3 import Web3, HTTPProvider
 import click
 
 
@@ -68,8 +69,13 @@ class NetworksManager():
         return networks
 
     def inspect(self, name):
-        """Get an network details"""
+        """Get a network details"""
         return self.store['networks'][name]
+
+    def get(self, name):
+        """Get a network object"""
+        endpoint = self.store['networks'][name]['rpc_url']
+        return Web3(HTTPProvider(endpoint))
 
     def rm(self, name):
         """Remove a network"""
