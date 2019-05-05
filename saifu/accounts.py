@@ -60,16 +60,16 @@ class AccountsManager():
             })
         return accounts
 
-    def inspect(self, name, password):
+    def inspect(self, name, password=None):
         """Get an account details"""
-        return {
-            'pkey': crypto.decrypt(
+        details = {'address': self.store['accounts'][name]['address']}
+        if password:
+            details['pkey'] = crypto.decrypt(
                 password,
                 self.store['accounts'][name]['salt'],
                 self.store['accounts'][name]['pkey_cipher'],
-            ),
-            'address': self.store['accounts'][name]['address'],
-        }
+            )
+        return details
 
     def get(self, name, password):
         """Get an account object"""
