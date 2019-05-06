@@ -13,4 +13,6 @@ def balance():
     """Display the balance"""
     address = a.inspect(a.selected())['address']
     web3 = n.get(n.selected())
-    click.echo(web3.eth.getBalance(address))
+    click.echo(
+        web3.fromWei(web3.eth.getBalance(address), 'ether')
+    )
