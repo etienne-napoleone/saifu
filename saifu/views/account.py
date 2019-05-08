@@ -28,6 +28,6 @@ def select(name):
 
 
 def inspect(name, export, pkey, address):
-    el = '  {} {}'.format('{}:', click.style('{}', fg='yellow'))
+    el = '{} {}'.format('{}:', click.style('{}', fg='yellow'))
     click.echo(el.format('Address', address))
     click.echo(el.format('Private key', pkey if export else '******'))

@@ -29,7 +29,7 @@ def select(name):
 
 
 def inspect(name, rpc_url, chain_id, ticker):
-    el = '  {} {}'.format('{}:', click.style('{}', fg='yellow'))
+    el = '{} {}'.format('{}:', click.style('{}', fg='yellow'))
     click.echo(el.format('RPC url', rpc_url))
     click.echo(el.format('Chain id', chain_id))
     click.echo(el.format('Ticker', ticker))
