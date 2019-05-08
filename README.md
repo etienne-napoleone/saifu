@@ -10,7 +10,7 @@ Mainly focused on TomoChain.
 - [x] Support multiple accounts
 - [x] Store accounts pkeys encrypted
 - [x] Support multiple networks (chains)
-- [ ] Display balance
+- [x] Display balance
 - [ ] Send transactions
 
 **v1.1** - Improve functionalities

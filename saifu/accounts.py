@@ -36,8 +36,8 @@ class AccountsManager():
             with open(self.path, 'w') as f:
                 json.dump(self.store, f)
 
-    def new(self, name, pkey, password):
-        """Add a new account"""
+    def add(self, name, pkey, password):
+        """Add an account"""
         payload = crypto.encrypt(password, pkey)
         account = Account.privateKeyToAccount(pkey)
         self.store['accounts'].update({name: {
@@ -60,16 +60,25 @@ class AccountsManager():
             })
         return accounts
 
-    def get(self, name, password):
+    def inspect(self, name, password=None):
         """Get an account details"""
-        return {
-            'pkey': crypto.decrypt(
+        details = {'address': self.store['accounts'][name]['address']}
+        if password:
+            details['pkey'] = crypto.decrypt(
                 password,
                 self.store['accounts'][name]['salt'],
                 self.store['accounts'][name]['pkey_cipher'],
-            ),
-            'address': self.store['accounts'][name]['address'],
-        }
+            )
+        return details
+
+    def get(self, name, password):
+        """Get an account object"""
+        pkey = crypto.decrypt(
+            password,
+            self.store['accounts'][name]['salt'],
+            self.store['accounts'][name]['pkey_cipher'],
+        )
+        return Account.privateKeyToAccount(pkey)
 
     def rm(self, name):
         """Remove an account"""

@@ -12,4 +12,5 @@ def entrypoint():
 
 
 entrypoint.add_command(commands.account)
+entrypoint.add_command(commands.balance)
 entrypoint.add_command(commands.network)

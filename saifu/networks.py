@@ -1,6 +1,7 @@
 import os
 import json
 
+from web3 import Web3, HTTPProvider
 import click
 
 
@@ -48,7 +49,7 @@ class NetworksManager():
             with open(self.path, 'w') as f:
                 json.dump(self.store, f)
 
-    def new(self, name, rpc_url, chain_id, ticker):
+    def add(self, name, rpc_url, chain_id, ticker):
         """Add a new network"""
         self.store['networks'].update({name: {
             'rpc_url': rpc_url,
@@ -67,9 +68,14 @@ class NetworksManager():
             })
         return networks
 
-    def get(self, name):
-        """Get an network details"""
+    def inspect(self, name):
+        """Get a network details"""
         return self.store['networks'][name]
+
+    def get(self, name):
+        """Get a network object"""
+        endpoint = self.store['networks'][name]['rpc_url']
+        return Web3(HTTPProvider(endpoint))
 
     def rm(self, name):
         """Remove a network"""
