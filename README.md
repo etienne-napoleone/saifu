@@ -12,6 +12,7 @@ Mainly focused on TomoChain.
 - [x] Support multiple networks (chains)
 - [x] Display balance
 - [ ] Send transactions
+- [ ] Tests
 
 **v1.1** - Improve functionalities
 - [ ] Consult transactions history
